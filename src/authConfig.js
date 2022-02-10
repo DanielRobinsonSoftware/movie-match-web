@@ -1,3 +1,5 @@
+import { randomString } from "./random"
+
 // clientId and authority are not secrets, but I would prefer not to have them in git history
 export const msalConfig = {
   auth: {
@@ -11,10 +13,10 @@ export const msalConfig = {
   }
 };
 
-// Add scopes here for ID token to be used at Microsoft identity platform endpoints.
 // TODO: Set nonce
 export const loginRequest = {
- scopes: ["User.Read"],
+ scopes: ["api://29202d8e-7f0d-4cb6-913f-fd0eb7155cb6/movie-data.read"],
+ nonce: randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 };
 
 export const signUpRequest = {
