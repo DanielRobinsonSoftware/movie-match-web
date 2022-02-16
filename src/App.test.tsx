@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import React from 'react';
 import App from './App';
 
 test('renders sign in button', () => {
@@ -15,6 +16,6 @@ test('renders sign up button', () => {
   expect(target).toBeInTheDocument();
 });
 
-var findButton = (elements) => {
-  return elements.find(element => element.nodeName.toLowerCase() === "button");
-}
+var findButton = elements => {
+  return elements.find(element => element.nodeName.toLowerCase() === 'button');
+};

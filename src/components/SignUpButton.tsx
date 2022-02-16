@@ -11,8 +11,9 @@ function handleSignUp(instance) {
 
 export const SignUpButton = () => {
     const { instance } = useMsal();
-
     return (
-        <Button variant="secondary" className="ml-auto" onClick={() => handleSignUp(instance)}>Sign up</Button>
+        <Button variant="secondary" className="ml-auto" onClick={() => handleSignUp(instance)}>
+            Sign up
+        </Button>
     );
-}
+};
