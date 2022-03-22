@@ -1,19 +1,14 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
-import {AccessTokenResponse, getAccessToken} from "./getAccessToken"
-import { IMsalContext } from "@azure/msal-react";
 
 export interface MovieMatchApiResponse<T> {
     data: T;
 }
 
-export default async function getMovieMatchData<T>(endpoint: string, msalContext: IMsalContext){
+export default async function getMovieMatchData<T>(endpoint: string, bearerToken: string){
     const baseUrl = "https://moviematch211027-staging.azurewebsites.net/api"; // TODO: Call appropriate endpoint (staging vs production)
 
-    const accessTokenResponse = await getAccessToken(msalContext);
-    
-    const getData = (async (a: AccessTokenResponse) => {
-        const bearer = `Bearer ${a.accessToken}`;
+    const getData = (async (bearerToken: string) => {
+        const bearer = `Bearer ${bearerToken}`;
 
         const response = await axios.get(baseUrl + endpoint, {
             headers: {
@@ -28,5 +23,5 @@ export default async function getMovieMatchData<T>(endpoint: string, msalContext
 
     });
 
-    return getData(accessTokenResponse);
+    return getData(bearerToken);
 }
