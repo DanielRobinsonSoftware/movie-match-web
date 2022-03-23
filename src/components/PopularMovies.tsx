@@ -39,24 +39,17 @@ export const PopularMovies = () => {
     return () => {};
   }, [msalContext]);
 
+  const ErrorSection = () => <p>Could not load movies at the moment, please try again later.</p>  
+  const MovieSection = () => { 
+    return movieList 
+      ? <ul>{movieList.map((movie: Movie) => <li key={movie.id}>{movie.original_title}</li>)}</ul>
+      : <p>Loading data...</p>
+  }
+
   return (
     <>    
-        {
-        <>
-          <h1>Popular Movies</h1>
-          {error && 
-            <p>Could not load movies, please try again.</p>
-          }
-          {movieList == null &&
-            <p>Loading data...</p>
-          }          
-          {movieList && 
-            <ul>
-              {movieList.map((movie: Movie) => <li key={movie.id}>{movie.original_title}</li>)}
-            </ul>
-          }
-        </>
-        }
+      <h1>Popular Movies</h1>
+      { error ? <ErrorSection /> : <MovieSection /> }
     </>
   );
 }

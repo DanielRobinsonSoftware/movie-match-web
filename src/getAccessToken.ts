@@ -14,20 +14,20 @@ export async function getAccessToken(msalContext: IMsalContext): Promise<AccessT
     return await instance.acquireTokenSilent(request).then(
         (authResult: AuthenticationResult) => {
         return Promise.resolve<AccessTokenResponse>({
-            error: null,
             accessToken: authResult.accessToken,
+            error: null,
         });
     }).catch(() =>
         instance.acquireTokenPopup(request).then(
             (authResult: AuthenticationResult) => {
             return Promise.resolve<AccessTokenResponse>({
-                error: null,
                 accessToken: authResult.accessToken,
+                error: null,
             });
         }).catch((error) => {
             return Promise.reject<AccessTokenResponse>({
-                error: error,
                 accessToken: null,
+                error: error,
             });
         })
     );
