@@ -1,8 +1,9 @@
 import React from "react";
 import { useMsal } from "@azure/msal-react";
+import { IPublicClientApplication } from "@azure/msal-browser";
 import Button from "react-bootstrap/Button";
 
-function handleLogout(instance) {
+function handleLogout(instance: IPublicClientApplication) {
     instance.logoutPopup().catch(e => {
         console.error(e);
     });

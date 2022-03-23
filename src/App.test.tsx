@@ -16,6 +16,6 @@ test('renders sign up button', () => {
   expect(target).toBeInTheDocument();
 });
 
-var findButton = elements => {
+var findButton = (elements: HTMLElement[]) => {
   return elements.find(element => element.nodeName.toLowerCase() === 'button');
 };
