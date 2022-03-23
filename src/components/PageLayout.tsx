@@ -1,13 +1,12 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
-import { useIsAuthenticated } from "@azure/msal-react";
+import { useMsal, useIsAuthenticated as userIsAuthenticated /*msal library has a typo*/ } from "@azure/msal-react";
 import { SignInButton } from "./SignInButton";
 import { SignOutButton } from "./SignOutButton";
 import { SignUpButton } from "./SignUpButton";
-import { useMsal } from "@azure/msal-react";
 
-export const PageLayout = props => {
-    const isAuthenticated = useIsAuthenticated();
+export const PageLayout = (props: { children: JSX.Element[]; }) => {
+    const isAuthenticated = userIsAuthenticated();
     return (
         <>
             <Navbar bg="primary" variant="dark">
@@ -24,7 +23,7 @@ export const PageLayout = props => {
     );
 };
 
-const SignInLayout = props => {
+const SignInLayout = (props: { isAuthenticated: boolean; }) => {
     const { accounts } = useMsal();
     const name = accounts[0] && accounts[0].username;
     const signIn = props.isAuthenticated ? (

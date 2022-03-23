@@ -1,9 +1,10 @@
 import React from "react";
 import { useMsal } from "@azure/msal-react";
+import { IPublicClientApplication } from "@azure/msal-browser";
 import { signUpRequest } from "../authConfig";
 import Button from "react-bootstrap/Button";
 
-function handleSignUp(instance) {
+function handleSignUp(instance: IPublicClientApplication) {
     instance.loginPopup(signUpRequest).catch(e => {
         console.error(e);
     });
