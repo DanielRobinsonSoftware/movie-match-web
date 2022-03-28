@@ -4,6 +4,7 @@ import { Movie } from "../dao/movie";
 import { MoviesResponse } from "../dao/moviesResponse";
 import { useMsal } from "@azure/msal-react";
 import { getAccessToken } from "../getAccessToken"
+import Spinner from 'react-bootstrap/Spinner'
 
 export const PopularMovies = () => {
   const popularMoviesUrl = "/v1/movies/popular";
@@ -43,7 +44,7 @@ export const PopularMovies = () => {
   const MovieSection = () => { 
     return movieList 
       ? <ul>{movieList.map((movie: Movie) => <li key={movie.id}>{movie.original_title}</li>)}</ul>
-      : <p>Loading data...</p>
+      : <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>
   }
 
   return (
