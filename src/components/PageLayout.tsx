@@ -4,6 +4,7 @@ import { useMsal, useIsAuthenticated as userIsAuthenticated /*msal library has a
 import { SignInButton } from "./SignInButton";
 import { SignOutButton } from "./SignOutButton";
 import { SignUpButton } from "./SignUpButton";
+import Emoji from 'a11y-react-emoji';
 
 export const PageLayout = (props: { children: JSX.Element[]; }) => {
     const isAuthenticated = userIsAuthenticated();
@@ -15,7 +16,7 @@ export const PageLayout = (props: { children: JSX.Element[]; }) => {
                 </a>
                 <SignInLayout isAuthenticated={isAuthenticated} />
             </Navbar>
-            <h5>Find a movie to watch together 📽️❤️</h5>
+            <h5>Find a movie to watch together <Emoji symbol="📽️" label="projector" /><Emoji symbol="❤️" label="heart" /></h5>
             <br />
             <br />
             {props.children}
