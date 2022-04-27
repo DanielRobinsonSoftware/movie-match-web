@@ -1,45 +1,28 @@
-import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import { useMsal, useIsAuthenticated as userIsAuthenticated /*msal library has a typo*/ } from "@azure/msal-react";
-import { SignInButton } from "./SignInButton";
-import { SignOutButton } from "./SignOutButton";
-import { SignUpButton } from "./SignUpButton";
+import React from 'react';
+import { useIsAuthenticated as userIsAuthenticated /*msal library has a typo*/ } from "@azure/msal-react";
 import Emoji from 'a11y-react-emoji';
+import { ThemeWrapper } from './ThemeWrapper';
+import { ThemeButton } from './ThemeButton';
+import { useStorage } from '../useStorage';
+import { defaultTheme, ThemeType } from '../theme/theme';
+import { SignInLayout } from './SignInLayout';
 
 export const PageLayout = (props: { children: JSX.Element[]; }) => {
+    let [selectedTheme, setTheme] = useStorage<ThemeType>('selectedTheme', defaultTheme);
     const isAuthenticated = userIsAuthenticated();
     return (
-        <>
-            <Navbar bg="primary" variant="dark">
-                <a className="navbar-brand" href="/">
-                    Movie Match
-                </a>
-                <SignInLayout isAuthenticated={isAuthenticated} />
-            </Navbar>
-            <h5>Find a movie to watch together <Emoji symbol="📽️" label="projector" /><Emoji symbol="❤️" label="heart" /></h5>
-            <br />
-            <br />
-            {props.children}
-        </>
-    );
-};
-
-const SignInLayout = (props: { isAuthenticated: boolean; }) => {
-    const { accounts } = useMsal();
-    const name = accounts[0] && accounts[0].username;
-    const signIn = props.isAuthenticated ? (
-        <>
-            <h5 className="card-title">Signed in as {name}</h5>
-            <SignOutButton />
-        </>
-    ) : (
-        <SignInButton />
-    );
-    const signUp = !props.isAuthenticated && <SignUpButton />;
-    return (
-        <>
-            {signIn}
-            {signUp}
-        </>
+        <ThemeWrapper selectedTheme={selectedTheme}>
+            <div className="App">
+                <span>
+                    <a href="/">Movie Match</a>
+                    <SignInLayout isAuthenticated={isAuthenticated} />
+                    <ThemeButton selectedTheme={selectedTheme} setTheme={setTheme} />
+                </span>
+                <h5>Find a movie to watch together <Emoji symbol="📽️" label="projector" /><Emoji symbol="❤️" label="heart" /></h5>
+                <br />
+                <br />
+                {props.children}
+            </div>
+        </ThemeWrapper>
     );
 };
