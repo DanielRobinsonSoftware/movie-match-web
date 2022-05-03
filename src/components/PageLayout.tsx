@@ -8,15 +8,15 @@ import { defaultTheme, ThemeType } from '../theme/theme';
 import { SignInLayout } from './SignInLayout';
 
 export const PageLayout = (props: { children: JSX.Element[]; }) => {
-    let [selectedTheme, setTheme] = useStorage<ThemeType>('selectedTheme', defaultTheme);
+    let [theme, setTheme] = useStorage<ThemeType>('selectedTheme', defaultTheme);
     const isAuthenticated = userIsAuthenticated();
     return (
-        <ThemeWrapper selectedTheme={selectedTheme}>
+        <ThemeWrapper theme={theme}>
             <div className="App">
                 <span>
-                    <a href="/">Movie Match</a>
-                    <SignInLayout isAuthenticated={isAuthenticated} />
-                    <ThemeButton selectedTheme={selectedTheme} setTheme={setTheme} />
+                    <a href="/"><img src="/MovieMatchLogo-118x94.png" alt="Movie Match" /></a>
+                    <SignInLayout theme={theme} isAuthenticated={isAuthenticated} />
+                    <ThemeButton selectedTheme={theme} setTheme={setTheme} />
                 </span>
                 <h5>Find a movie to watch together <Emoji symbol="📽️" label="projector" /><Emoji symbol="❤️" label="heart" /></h5>
                 <br />

@@ -1,8 +1,10 @@
-import React from "react";
+import React from 'react';
+import styled from 'styled-components';
+import { ThemeType } from '../theme/theme';
+import { baseButtonStyles } from '../theme/styledButton';
 import { useMsal } from "@azure/msal-react";
 import { IPublicClientApplication } from "@azure/msal-browser";
 import { loginRequest } from "../authConfig";
-import Button from "react-bootstrap/Button";
 
 function handleLogin(instance: IPublicClientApplication) {
     instance.loginPopup(loginRequest).catch(e => {
@@ -10,11 +12,15 @@ function handleLogin(instance: IPublicClientApplication) {
     });
 }
 
-export const SignInButton = () => {
+export const SignInButton = (props: { theme: ThemeType}) => {
     const { instance } = useMsal();
+
+    const SignInButton = styled.button`
+        ${baseButtonStyles}
+    `
     return (
-        <Button variant="secondary" className="ml-auto" onClick={() => handleLogin(instance)}>
+        <SignInButton className="ml-auto" onClick={() => handleLogin(instance) } >
             Sign in
-        </Button>
+        </SignInButton>
     );
 };
