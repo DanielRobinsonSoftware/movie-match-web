@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { ThemeType } from '../theme/theme';
 
-export const ThemeWrapper = (props: { selectedTheme: ThemeType, children: JSX.Element | JSX.Element[]; }) => {
+export const ThemeWrapper = (props: { theme: ThemeType, children: JSX.Element | JSX.Element[]; }) => {
 
   const GlobalStyle = styled.div`
     .App {
@@ -16,7 +16,7 @@ export const ThemeWrapper = (props: { selectedTheme: ThemeType, children: JSX.El
     }
   `
   return (
-    <ThemeProvider theme={() => props.selectedTheme}>
+    <ThemeProvider theme={() => props.theme}>
       <GlobalStyle>
         {props.children}
       </GlobalStyle>

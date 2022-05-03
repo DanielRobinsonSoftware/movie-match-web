@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react';
+import styled from 'styled-components';
+import { ThemeType } from '../theme/theme';
+import { baseButtonStyles } from '../theme/styledButton';
 import { useMsal } from "@azure/msal-react";
 import { IPublicClientApplication } from "@azure/msal-browser";
-import Button from "react-bootstrap/Button";
 
 function handleLogout(instance: IPublicClientApplication) {
     instance.logoutPopup().catch(e => {
@@ -9,11 +11,15 @@ function handleLogout(instance: IPublicClientApplication) {
     });
 }
 
-export const SignOutButton = () => {
+export const SignOutButton = (props: { theme: ThemeType }) => {
     const { instance } = useMsal();
+
+    const SignOutButton = styled.button`
+        ${baseButtonStyles}
+    `
     return (
-        <Button variant="secondary" className="ml-auto" onClick={() => handleLogout(instance)}>
+        <SignOutButton className="ml-auto" onClick={() => handleLogout(instance)}>
             Sign out
-        </Button>
+        </SignOutButton>
     );
 };
