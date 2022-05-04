@@ -16,7 +16,6 @@
     "axios": "^0.26.0",
     "eslint-plugin-react-hooks": "^4.5.0-next-2bf5eba72-20220416",
     "react": "^17.0.2",
-    "react-bootstrap": "^2.1.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.5",
