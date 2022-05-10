@@ -22,7 +22,7 @@ const Button = styled.button`
         filter: brightness(100%);
     }
     #moon {
-        ${props => props.theme != lightTheme &&`
+        ${props => props.theme !== lightTheme &&`
             display: none;
         `}
     }

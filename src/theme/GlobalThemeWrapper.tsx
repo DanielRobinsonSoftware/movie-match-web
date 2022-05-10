@@ -9,9 +9,10 @@ const GlobalStyle = styled.div`
   flex-direction: column;
   align-items: left;
   color: ${props => props.theme.textColor};
-  font-size: large;
+  font-size: 16px;
+  padding: 10px 20px;
 `
-export const ThemeWrapper = (props: { theme: ThemeType, children: JSX.Element | JSX.Element[]; }) => {
+export const GlobalThemeWrapper = (props: { theme: ThemeType, children: JSX.Element | JSX.Element[]; }) => {
 
   return (
     <ThemeProvider theme={() => props.theme}>
