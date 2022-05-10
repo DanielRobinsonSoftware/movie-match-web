@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { ThemeType } from '../theme/theme';
+import { ThemeType } from './theme';
 
 const GlobalStyle = styled.div`
   background-color: ${props => props.theme.bgColor};

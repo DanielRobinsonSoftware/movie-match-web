@@ -1,6 +1,6 @@
 import React from 'react';
 import Emoji from 'a11y-react-emoji';
-import { ThemeWrapper } from './ThemeWrapper';
+import { ThemeWrapper } from '../theme/ThemeWrapper';
 import { useStorage } from '../useStorage';
 import { defaultTheme, ThemeType } from '../theme/theme';
 import { HeaderLayout } from './HeaderLayout';

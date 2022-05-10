@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import getMovieMatchData from "../movieMatchApiClient";
-import { Movie } from "../dao/movie";
-import { MoviesResponse } from "../dao/moviesResponse";
+import getMovieMatchData from "./data-access/movieMatchApiClient";
+import { Movie } from "./data-access/movie";
+import { MoviesResponse } from "./data-access/moviesResponse";
 import { useMsal } from "@azure/msal-react";
-import { getAccessToken } from "../getAccessToken"
+import { getAccessToken } from "./account/getAccessToken"
 
 export const PopularMovies = () => {
   const popularMoviesUrl = "/v1/movies/popular";

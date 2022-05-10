@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import defaultTheme, { lightTheme, darkTheme, ThemeType } from '../theme/theme';
+import { lightTheme, darkTheme, ThemeType } from './theme';
 
 const themeToggler = (themeToToggle: ThemeType) => {
     let theme: ThemeType;

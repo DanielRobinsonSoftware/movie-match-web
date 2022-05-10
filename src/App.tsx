@@ -1,7 +1,7 @@
 import React from "react";
-import { PageLayout } from "./components/PageLayout";
+import { PageLayout } from "./layout/PageLayout";
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
-import { PopularMovies } from './components/PopularMovies'
+import { PopularMovies } from './PopularMovies'
 
 function App() {
   return (

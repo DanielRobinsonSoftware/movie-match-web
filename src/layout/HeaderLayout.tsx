@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ThemeType } from '../theme/theme';
 import { SignInLayout } from './SignInLayout';
-import { ThemeButton } from './ThemeButton';
+import { ThemeButton } from '../theme/ThemeButton';
 
 const Header = styled.header`
     display: flex;

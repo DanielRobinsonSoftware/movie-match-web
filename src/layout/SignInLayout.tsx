@@ -1,8 +1,8 @@
 import React from 'react';
 import { useIsAuthenticated as userIsAuthenticated /*msal library has a typo*/ } from "@azure/msal-react";
-import { SignInButton } from "./SignInButton";
-import { SignOutButton } from "./SignOutButton";
-import { SignUpButton } from "./SignUpButton";
+import { SignInButton } from "../account/SignInButton";
+import { SignOutButton } from "../account/SignOutButton";
+import { SignUpButton } from "../account/SignUpButton";
 import { useMsal } from "@azure/msal-react";
 import { ThemeType } from '../theme/theme';
 

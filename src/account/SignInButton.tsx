@@ -4,10 +4,10 @@ import { ThemeType } from '../theme/theme';
 import { baseButtonStyles } from '../theme/styledButton';
 import { useMsal } from "@azure/msal-react";
 import { IPublicClientApplication } from "@azure/msal-browser";
-import { signUpRequest } from "../authConfig";
+import { loginRequest } from "../account/authConfig";
 
-function handleSignUp(instance: IPublicClientApplication) {
-    instance.loginPopup(signUpRequest).catch(e => {
+function handleLogin(instance: IPublicClientApplication) {
+    instance.loginPopup(loginRequest).catch(e => {
         console.error(e);
     });
 }
@@ -16,12 +16,12 @@ const Button = styled.button`
     ${baseButtonStyles}
     min-height: ${props => props.theme.headerHeight};
 `
-export const SignUpButton = (props: { theme: ThemeType }) => {
+export const SignInButton = (props: { theme: ThemeType}) => {
     const { instance } = useMsal();
 
     return (
-        <Button className="ml-auto" onClick={() => handleSignUp(instance)}>
-            Sign up
+        <Button className="ml-auto" onClick={() => handleLogin(instance) } >
+            Sign in
         </Button>
     );
 };
