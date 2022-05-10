@@ -4,7 +4,7 @@ import { ThemeType } from '../theme/theme';
 import { baseButtonStyles } from '../theme/styledButton';
 import { useMsal } from "@azure/msal-react";
 import { IPublicClientApplication } from "@azure/msal-browser";
-import { loginRequest } from "../authConfig";
+import { loginRequest } from "../account/authConfig";
 
 function handleLogin(instance: IPublicClientApplication) {
     instance.loginPopup(loginRequest).catch(e => {
@@ -12,15 +12,16 @@ function handleLogin(instance: IPublicClientApplication) {
     });
 }
 
+const Button = styled.button`
+    ${baseButtonStyles}
+    min-height: ${props => props.theme.headerHeight};
+`
 export const SignInButton = (props: { theme: ThemeType}) => {
     const { instance } = useMsal();
 
-    const SignInButton = styled.button`
-        ${baseButtonStyles}
-    `
     return (
-        <SignInButton className="ml-auto" onClick={() => handleLogin(instance) } >
+        <Button className="ml-auto" onClick={() => handleLogin(instance) } >
             Sign in
-        </SignInButton>
+        </Button>
     );
 };

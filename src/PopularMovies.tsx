@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
-import getMovieMatchData from "../movieMatchApiClient";
-import { Movie } from "../dao/movie";
-import { MoviesResponse } from "../dao/moviesResponse";
+import styled from 'styled-components';
+import getMovieMatchData from "./data-access/movieMatchApiClient";
+import { Movie } from "./data-access/movie";
+import { MoviesResponse } from "./data-access/moviesResponse";
 import { useMsal } from "@azure/msal-react";
-import { getAccessToken } from "../getAccessToken"
+import { getAccessToken } from "./account/getAccessToken"
 
+export const Heading1 = styled.h1`
+  color: ${props => props.theme.headingColor};
+`
+export const Link = styled.a`
+  color: ${props => props.theme.linkColor};
+  :hover {
+        color: ${props => props.theme.highlightColor};
+    }
+`
 export const PopularMovies = () => {
   const popularMoviesUrl = "/v1/movies/popular";
   const [movieList, setMovieList] = useState<Movie[]>();
@@ -13,7 +23,7 @@ export const PopularMovies = () => {
 
   useEffect(() => {
     (async () => {
-      
+
       const accessTokenResponse = await getAccessToken(msalContext);
 
       if (accessTokenResponse.error){
@@ -35,20 +45,20 @@ export const PopularMovies = () => {
       setMovieList(moviesResponse.data.results);
 
     })();
-  
+
     return () => {};
   }, [msalContext]);
 
   const ErrorSection = () => <p>Could not load movies at the moment, please try again later.</p>  
   const MovieSection = () => { 
     return movieList 
-      ? <ul>{movieList.map((movie: Movie) => <li key={movie.id}>{movie.original_title}</li>)}</ul>
+      ? <ul>{movieList.map((movie: Movie) => <li key={movie.id}><Link href="#">{movie.original_title}</Link></li>)}</ul>
       : <p>Loading...</p>
   }
 
   return (
-    <>    
-      <h1>Popular Movies</h1>
+    <>
+      <Heading1>Popular Movies</Heading1>
       { error ? <ErrorSection /> : <MovieSection /> }
     </>
   );
