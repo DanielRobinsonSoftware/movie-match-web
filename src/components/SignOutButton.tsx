@@ -11,15 +11,16 @@ function handleLogout(instance: IPublicClientApplication) {
     });
 }
 
+const Button = styled.button`
+    ${baseButtonStyles}
+    min-height: ${props => props.theme.headerHeight};
+`
 export const SignOutButton = (props: { theme: ThemeType }) => {
     const { instance } = useMsal();
 
-    const SignOutButton = styled.button`
-        ${baseButtonStyles}
-    `
     return (
-        <SignOutButton className="ml-auto" onClick={() => handleLogout(instance)}>
+        <Button className="ml-auto" onClick={() => handleLogout(instance)}>
             Sign out
-        </SignOutButton>
+        </Button>
     );
 };

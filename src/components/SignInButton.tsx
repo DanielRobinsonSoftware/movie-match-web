@@ -12,15 +12,16 @@ function handleLogin(instance: IPublicClientApplication) {
     });
 }
 
+const Button = styled.button`
+    ${baseButtonStyles}
+    min-height: ${props => props.theme.headerHeight};
+`
 export const SignInButton = (props: { theme: ThemeType}) => {
     const { instance } = useMsal();
 
-    const SignInButton = styled.button`
-        ${baseButtonStyles}
-    `
     return (
-        <SignInButton className="ml-auto" onClick={() => handleLogin(instance) } >
+        <Button className="ml-auto" onClick={() => handleLogin(instance) } >
             Sign in
-        </SignInButton>
+        </Button>
     );
 };

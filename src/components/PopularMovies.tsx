@@ -13,7 +13,7 @@ export const PopularMovies = () => {
 
   useEffect(() => {
     (async () => {
-      
+
       const accessTokenResponse = await getAccessToken(msalContext);
 
       if (accessTokenResponse.error){
@@ -35,7 +35,7 @@ export const PopularMovies = () => {
       setMovieList(moviesResponse.data.results);
 
     })();
-  
+
     return () => {};
   }, [msalContext]);
 
@@ -47,7 +47,7 @@ export const PopularMovies = () => {
   }
 
   return (
-    <>    
+    <>
       <h1>Popular Movies</h1>
       { error ? <ErrorSection /> : <MovieSection /> }
     </>

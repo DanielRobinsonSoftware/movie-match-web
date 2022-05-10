@@ -17,7 +17,7 @@ export default async function getMovieMatchData<T>(endpoint: string, bearerToken
                     'Authorization': bearer
                 }
             });
-    
+
             const apiResponseData: MovieMatchApiResponse<T> = {
                 data: response.data,
                 error: null,

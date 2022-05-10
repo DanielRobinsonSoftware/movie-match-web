@@ -12,15 +12,16 @@ function handleSignUp(instance: IPublicClientApplication) {
     });
 }
 
+const Button = styled.button`
+    ${baseButtonStyles}
+    min-height: ${props => props.theme.headerHeight};
+`
 export const SignUpButton = (props: { theme: ThemeType }) => {
     const { instance } = useMsal();
 
-    const SignUpButton = styled.button`
-        ${baseButtonStyles}
-    `
     return (
-        <SignUpButton className="ml-auto" onClick={() => handleSignUp(instance)}>
+        <Button className="ml-auto" onClick={() => handleSignUp(instance)}>
             Sign up
-        </SignUpButton>
+        </Button>
     );
 };

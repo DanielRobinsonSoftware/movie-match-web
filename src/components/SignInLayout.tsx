@@ -12,7 +12,7 @@ export const SignInLayout = (props: { theme: ThemeType }) => {
     const isAuthenticated = userIsAuthenticated();
     const signIn = isAuthenticated ? (
         <>
-            <h5 className="card-title">Signed in as {name}</h5>
+            <span>Signed in as {name}</span>
             <SignOutButton theme={props.theme} />
         </>
     ) : (
