@@ -19,7 +19,7 @@ A website to help couples or groups to choose a movie to watch
 This is a non-profit, solo project for fun and practice
 
 ## 👏 Attribution
-The emojis were designed by <a href="https://openmoji.org/" rel="nofollow">OpenMoji</a> – the open-source emoji and icon project. License: <a href="https://creativecommons.org/licenses/by-sa/4.0/#" rel="nofollow">CC BY-SA 4.0</a>
-- <a href="https://openmoji.org/library/emoji-1F4FD/" rel="nofollow">Projector emoji</a> by Sina Schulz
-- <a href="https://openmoji.org/library/emoji-2764/" rel="nofollow">Heart emoji</a> by Laura Humpfer
-The <a href="https://josipkelava.com/metropolis-1920" rel="nofollow">Metropolis font</a> used in the logo was designed by Josip Kelava
+The emojis were designed by <a href="https://openmoji.org/">OpenMoji</a> – the open-source emoji and icon project. License: <a href="https://creativecommons.org/licenses/by-sa/4.0/#">CC BY-SA 4.0</a>
+- <a href="https://openmoji.org/library/emoji-1F4FD/">Projector emoji</a> by Sina Schulz
+- <a href="https://openmoji.org/library/emoji-2764/">Heart emoji</a> by Laura Humpfer
+The <a href="https://josipkelava.com/metropolis-1920">Metropolis font</a> used in the logo was designed by Josip Kelava
