@@ -2,18 +2,18 @@ import { css } from 'styled-components';
 
 export const baseButtonStyles = css`
     background-color: ${props => props.theme.buttonColor};
-    color: ${props => props.theme.linkColor};
-    border-color: ${props => props.theme.linkColor};
-    border-width: 2px;
-    border-style: solid;
+    color: ${props => props.theme.textColor};
+    border-color: ${props => props.theme.buttonBorderColor};
+    border-width: 3px;
+    border-style: double;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 4px;
+    border-radius: 14px;
     margin: 4px 10px;
+    filter: brightness(80%);
     :hover
     {
-        color: ${props => props.theme.highlightColor};
-        border-color: ${props => props.theme.highlightColor};
+        filter: brightness(100%);
     }
 `

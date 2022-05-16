@@ -1,20 +1,21 @@
 export type ThemeType = typeof defaultTheme;
 
 export const defaultTheme = {
-    bgColor: '#100000',
-    textColor: '#fef5d2',
-    linkColor: '#c10912',
-    highlightColor: '#f00b18',
-    buttonColor: '#100000',
-    headingColor: '#8D0000',
+    bgColor: '#150b0a',
+    textColor: '#f9f5f4',
+    linkColor: '#b1b0be',
+    buttonColor: '#412939',
+    buttonBorderColor: '#70625f',
     headerHeight: '50px',
 }
 
 export const lightTheme: ThemeType = {
     ...defaultTheme,
-    bgColor: '#e8ecf0',
-    textColor: '#001c38',
-    linkColor: '#5d85f2',
+    bgColor: '#f9f5f4',
+    textColor: '#150b0a',
+    linkColor: '#412939',
+    buttonColor: '#b1b0be',
+    buttonBorderColor: '#4c353f',
 };
 
 export const darkTheme: ThemeType = {

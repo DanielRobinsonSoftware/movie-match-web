@@ -4,17 +4,13 @@ import getMovieMatchData from "./data-access/movieMatchApiClient";
 import { Movie } from "./data-access/movie";
 import { MoviesResponse } from "./data-access/moviesResponse";
 import { useMsal } from "@azure/msal-react";
-import { getAccessToken } from "./account/getAccessToken"
+import { getAccessToken } from "./account/getAccessToken";
+import { Link } from "./theme/link";
 
 export const Heading1 = styled.h1`
   color: ${props => props.theme.headingColor};
 `
-export const Link = styled.a`
-  color: ${props => props.theme.linkColor};
-  :hover {
-        color: ${props => props.theme.highlightColor};
-    }
-`
+
 export const PopularMovies = () => {
   const popularMoviesUrl = "/v1/movies/popular";
   const [movieList, setMovieList] = useState<Movie[]>();
