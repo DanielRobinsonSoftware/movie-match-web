@@ -17,6 +17,7 @@ const Button = styled.button`
     border: 0;
     min-height: ${props => props.theme.headerHeight};
     filter: brightness(80%);
+    cursor: pointer;
     :hover
     {
         filter: brightness(100%);
