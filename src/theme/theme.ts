@@ -6,6 +6,7 @@ export const defaultTheme = {
     linkColor: '#b1b0be',
     buttonColor: '#412939',
     buttonBorderColor: '#70625f',
+    logoColor: '#ff0000',
     headerHeight: '50px',
 }
 
@@ -15,6 +16,7 @@ export const lightTheme: ThemeType = {
     textColor: '#150b0a',
     linkColor: '#412939',
     buttonColor: '#b1b0be',
+    logoColor: '#ee003c',
     buttonBorderColor: '#4c353f',
 };
 

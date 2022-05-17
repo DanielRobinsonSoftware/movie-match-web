@@ -5,12 +5,12 @@ import { SignInLayout } from './SignInLayout';
 import { ThemeButton } from '../theme/ThemeButton';
 import { Projector } from '../emoji/Projector';
 import { Heart } from '../emoji/Heart';
+import { Logo } from './Logo';
 
 const Header = styled.header`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 1200px;
     width: 100%;
     padding: 0;
     margin: 0 auto;
@@ -38,7 +38,7 @@ export const HeaderLayout = (props: { theme: ThemeType, setTheme: (theme: ThemeT
 
     return (
         <Header>
-            <a href="/"><img src="/MovieMatchLogo-118x94.png" alt="Movie Match" /></a>
+            <Logo theme={props.theme} />
             <div className="middle">
                 <ul>
                     <li><p>Find a movie to watch together</p></li>
