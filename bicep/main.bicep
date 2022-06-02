@@ -1,11 +1,6 @@
 param appName string
 param location string = resourceGroup().location
 
-@secure()
-param identityInstance string
-@secure()
-param apiApplicationId string
-
 var uniqueSuffix = uniqueString(resourceGroup().id)
 var globallyUniqueName = toLower('${appName}${uniqueSuffix}')
 
@@ -46,8 +41,6 @@ module webAppSettingsModule 'webAppSettings.bicep' = {
     appInsightsKey: webAppModule.outputs.appInsightsKey
     identityTenantId: subscription().tenantId
     identityClientId: subscription().subscriptionId
-    identityInstance: identityInstance
-    apiApplicationId: apiApplicationId
     storageAccountName: shortGloballyUniqueName
     storageAccountId: storageAccountModule.outputs.storageAccountId
     storageAccountApiVersion: storageAccountModule.outputs.storageAccountApiVersion

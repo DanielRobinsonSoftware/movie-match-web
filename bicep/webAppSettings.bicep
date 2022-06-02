@@ -7,10 +7,6 @@ param appInsightsKey string
 param identityTenantId string
 @secure()
 param identityClientId string
-@secure()
-param identityInstance string
-@secure()
-param apiApplicationId string
 
 param storageAccountName string
 param storageAccountId string
@@ -25,8 +21,6 @@ var settingsProperties = {
   WEBSITE_CONTENTSHARE: webAppName
   AzureADTenantId: identityTenantId
   AzureADClientId: identityClientId
-  AzureADInstance: identityInstance
-  ApiApplicationId: apiApplicationId
 }
 
 resource functionAppSettings 'Microsoft.Web/sites/config@2021-01-15' = {
