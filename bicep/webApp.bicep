@@ -1,7 +1,6 @@
 param appInsightsName string
 param hostingPlanName string
 param webAppName string
-param webAppNameStaging string
 param location string
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
@@ -48,29 +47,6 @@ resource webApp 'Microsoft.Web/sites@2021-01-15' = {
   ]
 }
 
-resource webAppStagingSlot 'Microsoft.Web/sites/slots@2021-02-01' = {
-  name: webAppNameStaging
-  location: location
-  kind: 'app,linux'
-  identity: {
-    type: 'SystemAssigned'
-  }
-  properties: {
-    httpsOnly: true
-    serverFarmId: hostingPlan.id
-    clientAffinityEnabled: true
-    siteConfig: {
-
-    }
-  }
-
-  dependsOn: [
-    webApp
-  ]
-}
-
 output tenantId string = webApp.identity.tenantId
 output principalId string = webApp.identity.principalId
-output stagingTenantId string = webAppStagingSlot.identity.tenantId
-output stagingPrincipalId string = webAppStagingSlot.identity.principalId
 output appInsightsKey string = appInsights.properties.InstrumentationKey

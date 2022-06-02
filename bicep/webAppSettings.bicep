@@ -1,5 +1,4 @@
 param webAppName string
-param webAppNameStaging string
 
 @secure()
 param appInsightsKey string
@@ -25,10 +24,5 @@ var settingsProperties = {
 
 resource functionAppSettings 'Microsoft.Web/sites/config@2021-01-15' = {
   name: '${webAppName}/appsettings'
-  properties: settingsProperties
-}
-
-resource functionAppSettingsStaging 'Microsoft.Web/sites/slots/config@2021-02-01' = {
-  name: '${webAppNameStaging}/appsettings'
   properties: settingsProperties
 }
