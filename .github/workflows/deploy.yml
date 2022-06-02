@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  pull_request:
+    branches:
+    - main
+
+env:
+  AZURE_WEBAPP_NAME: moviematchweb
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Run Jest unit tests
+        shell: bash
+        env:
+          CI: true
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with: 
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy infrastructure
+        uses: azure/arm-deploy@v1
+        with:
+          resourceGroupName: ${{ secrets.AZURE_RG }}
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          template: ./bicep/main.bicep
+          parameters: appName=${{ env.AZURE_WEBAPP_NAME}}
+
