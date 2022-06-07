@@ -1,4 +1,5 @@
 param appName string
+param stagingAppName string
 param location string = resourceGroup().location
 
 var uniqueSuffix = uniqueString(resourceGroup().id)
@@ -24,6 +25,7 @@ module webAppModule 'webApp.bicep' = {
     appInsightsName: globallyUniqueName
     hostingPlanName: globallyUniqueName
     webAppName: appName
+    stagingWebAppName: stagingAppName
     location: location
   }
   dependsOn:[

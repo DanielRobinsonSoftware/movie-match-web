@@ -4,6 +4,8 @@
 
 ### Find a movie to watch together 📽️❤️
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/DanielRobinsonSoftware/movie-match-web/Deploy)
+![GitHub](https://img.shields.io/github/license/DanielRobinsonSoftware/movie-match-web)
 </div>
 
 ## 🤔 What is this?
