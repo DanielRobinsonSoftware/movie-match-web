@@ -50,3 +50,9 @@ jobs:
         with:
           app-name: ${{ env.STAGING_WEBAPP_NAME }}
           package: ${{ env.WEBAPP_PACKAGE_PATH }}
+
+      - name: Deploy production webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.PRODUCTION_WEBAPP_NAME }}
+          package: ${{ env.WEBAPP_PACKAGE_PATH }}
