@@ -1,7 +1,5 @@
 param appNameStaging string
-param apiUrlStaging string
 param appNameProduction string
-param apiUrlProduction string
 param location string = resourceGroup().location
 
 var uniqueSuffix = uniqueString(resourceGroup().id)
@@ -31,26 +29,6 @@ module webAppModule 'webApp.bicep' = {
     location: location
   }
   dependsOn:[
-    storageAccountModule
-  ]
-}
-
-module webAppSettingsModule 'webAppSettings.bicep' = {
-  name: 'webAppSettingsModule'
-  params: {
-    appNameStaging: appNameStaging
-    apiUrlStaging: apiUrlStaging
-    appNameProduction: appNameProduction
-    apiUrlProduction: apiUrlProduction
-    appInsightsKey: webAppModule.outputs.appInsightsKey
-    identityTenantId: subscription().tenantId
-    identityClientId: subscription().subscriptionId
-    storageAccountName: shortGloballyUniqueName
-    storageAccountId: storageAccountModule.outputs.storageAccountId
-    storageAccountApiVersion: storageAccountModule.outputs.storageAccountApiVersion
-  }
-  dependsOn:[
-    webAppModule
     storageAccountModule
   ]
 }
