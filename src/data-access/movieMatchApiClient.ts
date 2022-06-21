@@ -6,7 +6,7 @@ export interface MovieMatchApiResponse<T> {
 }
 
 export default async function getMovieMatchData<T>(endpoint: string, bearerToken: string){
-    const baseUrl = "https://moviematch211027-staging.azurewebsites.net/api"; // TODO: Call appropriate endpoint (staging vs production)
+    const baseUrl = process.env.REACT_APP_API_URL;
 
     const getData = (async (bearerToken: string) => {
         const bearer = `Bearer ${bearerToken}`;
