@@ -37,7 +37,7 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2021-01-15' = {
 
 
 resource webApp 'Microsoft.Web/sites@2021-01-15' = [for appName in appNames: {
-  name: appName
+  name: '${appName}'
   location: location
   kind: 'app,linux'
   identity: {
