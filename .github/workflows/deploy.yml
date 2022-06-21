@@ -6,8 +6,10 @@ on:
     - main
 
 env:
-  STAGING_WEBAPP_NAME: moviematchwebstg
-  PRODUCTION_WEBAPP_NAME: moviematchweb
+  WEBAPP_NAME_STAGING: moviematchwebstg
+  API_URL_STAGING: https://moviematchapi-staging.azurewebsites.net/
+  WEBAPP_NAME_PRODUCTION: moviematchweb
+  API_URL_PRODUCTION: https://moviematchapi.azurewebsites.net/
   WEBAPP_PACKAGE_PATH: ./build
 
 jobs:
@@ -43,16 +45,16 @@ jobs:
           resourceGroupName: ${{ secrets.AZURE_RG }}
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           template: ./bicep/main.bicep
-          parameters: stagingAppName=${{ env.STAGING_WEBAPP_NAME}} appName=${{ env.PRODUCTION_WEBAPP_NAME}}
+          parameters: appNameStaging=${{ env.WEBAPP_NAME_STAGING }} apiUrlStaging=${{ env.API_URL_STAGING }} appNameProduction=${{ env.WEBAPP_NAME_PRODUCTION }} apiUrlProduction=${{ env.API_URL_PRODUCTION }}
 
       - name: Deploy staging webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.STAGING_WEBAPP_NAME }}
+          app-name: ${{ env.WEBAPP_NAME_STAGING }}
           package: ${{ env.WEBAPP_PACKAGE_PATH }}
 
       - name: Deploy production webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.PRODUCTION_WEBAPP_NAME }}
+          app-name: ${{ env.WEBAPP_NAME_PRODUCTION }}
           package: ${{ env.WEBAPP_PACKAGE_PATH }}

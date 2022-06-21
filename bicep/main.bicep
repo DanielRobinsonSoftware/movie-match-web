@@ -1,9 +1,11 @@
-param appName string
-param stagingAppName string
+param appNameStaging string
+param apiUrlStaging string
+param appNameProduction string
+param apiUrlProduction string
 param location string = resourceGroup().location
 
 var uniqueSuffix = uniqueString(resourceGroup().id)
-var globallyUniqueName = toLower('${appName}${uniqueSuffix}')
+var globallyUniqueName = toLower('${appNameProduction}${uniqueSuffix}')
 
 // Storage account and keyvault names must be no longer than 24 characters, lowercase and globally unique
 var shortLength = min(length(globallyUniqueName), 24)
@@ -24,8 +26,8 @@ module webAppModule 'webApp.bicep' = {
   params: {
     appInsightsName: globallyUniqueName
     hostingPlanName: globallyUniqueName
-    webAppName: appName
-    stagingWebAppName: stagingAppName
+    appNameStaging: appNameStaging
+    appNameProduction: appNameProduction
     location: location
   }
   dependsOn:[
@@ -36,7 +38,10 @@ module webAppModule 'webApp.bicep' = {
 module webAppSettingsModule 'webAppSettings.bicep' = {
   name: 'webAppSettingsModule'
   params: {
-    webAppName: appName
+    appNameStaging: appNameStaging
+    apiUrlStaging: apiUrlStaging
+    appNameProduction: appNameProduction
+    apiUrlProduction: apiUrlProduction
     appInsightsKey: webAppModule.outputs.appInsightsKey
     identityTenantId: subscription().tenantId
     identityClientId: subscription().subscriptionId

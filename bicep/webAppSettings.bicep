@@ -1,4 +1,7 @@
-param webAppName string
+param appNameStaging string
+param apiUrlStaging string
+param appNameProduction string
+param apiUrlProduction string
 
 @secure()
 param appInsightsKey string
@@ -11,18 +14,28 @@ param storageAccountName string
 param storageAccountId string
 param storageAccountApiVersion string
 
+var appNamesAndApiUrls = [
+  {
+    appName: appNameStaging
+    apiUrl: apiUrlStaging
+  }
+  {
+    appName: appNameProduction
+    apiUrl: apiUrlProduction
+  }
+]
+
 var storageAccountConnectionString = 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageAccountId, storageAccountApiVersion).keys[0].value}'
 
-var settingsProperties = {
-  APPINSIGHTS_INSTRUMENTATIONKEY: appInsightsKey
-  AzureWebJobsStorage: storageAccountConnectionString
-  WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: storageAccountConnectionString
-  WEBSITE_CONTENTSHARE: webAppName
-  AzureADTenantId: identityTenantId
-  AzureADClientId: identityClientId
-}
-
-resource functionAppSettings 'Microsoft.Web/sites/config@2021-01-15' = {
-  name: '${webAppName}/appsettings'
-  properties: settingsProperties
-}
+resource functionAppSettings 'Microsoft.Web/sites/config@2021-01-15' = [for appNameAndApiUrl in appNamesAndApiUrls: {
+  name: '${appNameAndApiUrl.appName}/appsettings'
+  properties: {
+    APPINSIGHTS_INSTRUMENTATIONKEY: appInsightsKey
+    AzureWebJobsStorage: storageAccountConnectionString
+    WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: storageAccountConnectionString
+    WEBSITE_CONTENTSHARE: appNameAndApiUrl.appName
+    AzureADTenantId: identityTenantId
+    AzureADClientId: identityClientId
+    ApiUrl: appNameAndApiUrl.apiUrl
+  }
+}]
