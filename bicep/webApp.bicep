@@ -1,8 +1,17 @@
 param appInsightsName string
 param hostingPlanName string
-param webAppName string
-param stagingWebAppName string
+param appNameStaging string
+param appNameProduction string
 param location string
+
+var appNames = [
+  {
+    name: appNameStaging
+  }
+  {
+    name: appNameProduction
+  }
+]
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: appInsightsName
@@ -26,8 +35,9 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2021-01-15' = {
   }
 }
 
-resource webApp 'Microsoft.Web/sites@2021-01-15' = {
-  name: webAppName
+
+resource webApp 'Microsoft.Web/sites@2021-01-15' = [for appName in appNames: {
+  name: appName.name
   location: location
   kind: 'app,linux'
   identity: {
@@ -46,30 +56,6 @@ resource webApp 'Microsoft.Web/sites@2021-01-15' = {
   dependsOn: [
     appInsights
   ]
-}
+}]
 
-resource stagingWebApp 'Microsoft.Web/sites@2021-01-15' = {
-  name: stagingWebAppName
-  location: location
-  kind: 'app,linux'
-  identity: {
-    type: 'SystemAssigned'
-  }
-  properties: {
-    httpsOnly: true
-    serverFarmId: hostingPlan.id
-    clientAffinityEnabled: true
-    siteConfig: {
-      appSettings: []
-      linuxFxVersion: 'NODE:16-lts'
-    }
-  }
-
-  dependsOn: [
-    appInsights
-  ]
-}
-
-output tenantId string = webApp.identity.tenantId
-output principalId string = webApp.identity.principalId
 output appInsightsKey string = appInsights.properties.InstrumentationKey
