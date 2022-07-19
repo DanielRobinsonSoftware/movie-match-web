@@ -16,7 +16,7 @@ A website to help couples or groups to choose a movie to watch
 - CI/CD with GitHub actions
 
 ## 📝 Project
-- [Impact map](https://github.com/DanielRobinsonSoftware?tab=projects)
+- [Impact map](https://github.com/DanielRobinsonSoftware?tab=projects&type=classic)
 - [Kanban board](https://github.com/users/DanielRobinsonSoftware/projects/1)
 
 ## 🤷 Motivation
