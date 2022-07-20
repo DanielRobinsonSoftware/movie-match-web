@@ -29,6 +29,9 @@ jobs:
         shell: bash
         env:
           CI: true
+          REACT_APP_API_URL: ${{ env.API_URL_STAGING }}
+          REACT_APP_CLIENT_ID: ${{secrets.REACT_APP_CLIENT_ID}}
+          REACT_APP_AZURE_AD_TENANT_ID: ${{secrets.AZURE_AD_TENANT_ID}}
         run: |
           npm ci
           npm run build --if-present
@@ -47,22 +50,14 @@ jobs:
           template: ./bicep/main.bicep
           parameters: appNameStaging=${{ env.WEBAPP_NAME_STAGING }} appNameProduction=${{ env.WEBAPP_NAME_PRODUCTION }}
 
-      - run: echo "REACT_APP_API_URL=${{ env.API_URL_STAGING }}" >> ${{ env.WEBAPP_PACKAGE_PATH }}/.env
-      - run: echo "REACT_APP_CLIENT_ID=${{secrets.REACT_APP_CLIENT_ID}}" >> ${{ env.WEBAPP_PACKAGE_PATH }}/.env
-      - run: echo "REACT_APP_AZURE_AD_TENANT_ID=${{secrets.AZURE_AD_TENANT_ID}}" >> ${{ env.WEBAPP_PACKAGE_PATH }}/.env
-
       - name: Deploy staging webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.WEBAPP_NAME_STAGING }}
           package: ${{ env.WEBAPP_PACKAGE_PATH }}
 
-      - run: echo "REACT_APP_API_URL=${{ env.API_URL_PRODUCTION }}" >> ${{ env.WEBAPP_PACKAGE_PATH }}/.env
-      - run: echo "REACT_APP_CLIENT_ID=${{secrets.REACT_APP_CLIENT_ID}}" >> ${{ env.WEBAPP_PACKAGE_PATH }}/.env
-      - run: echo "REACT_APP_AZURE_AD_TENANT_ID=${{secrets.AZURE_AD_TENANT_ID}}" >> ${{ env.WEBAPP_PACKAGE_PATH }}/.env
-
-      - name: Deploy production webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ env.WEBAPP_NAME_PRODUCTION }}
-          package: ${{ env.WEBAPP_PACKAGE_PATH }}
+#      - name: Deploy production webapp
+#        uses: azure/webapps-deploy@v2
+#        with:
+#          app-name: ${{ env.WEBAPP_NAME_PRODUCTION }}
+#          package: ${{ env.WEBAPP_PACKAGE_PATH }}
