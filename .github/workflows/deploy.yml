@@ -8,8 +8,10 @@ on:
 env:
   WEBAPP_NAME_STAGING: moviematchwebstg
   API_URL_STAGING: https://moviematchapi-staging.azurewebsites.net/api
+  REACT_APP_AUTH_REDIRECT_URI_STAGING: https://moviematchwebstg.azurewebsites.net/
   WEBAPP_NAME_PRODUCTION: moviematchweb
   API_URL_PRODUCTION: https://moviematchapi.azurewebsites.net/api
+  REACT_APP_AUTH_REDIRECT_URI_PRODUCTION: https://moviematchweb.azurewebsites.net/
   WEBAPP_PACKAGE_PATH: ./build
 
 jobs:
@@ -32,6 +34,7 @@ jobs:
           REACT_APP_API_URL: ${{ env.API_URL_STAGING }}
           REACT_APP_CLIENT_ID: ${{secrets.REACT_APP_CLIENT_ID}}
           REACT_APP_AZURE_AD_TENANT_ID: ${{secrets.AZURE_AD_TENANT_ID}}
+          REACT_APP_AUTH_REDIRECT_URI: ${{ env.REACT_APP_AUTH_REDIRECT_URI_STAGING }}
         run: |
           npm ci
           npm run build --if-present
